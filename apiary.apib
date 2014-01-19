@@ -1,0 +1,67 @@
+FORMAT: 1A
+HOST: http://www.yblog.local
+
+# yblog
+YBLog is a simple platform for publishing posts.
+
+# Group Posts
+Notes related resources of the **Posts API**
+
+## Posts Collection [/posts{?since}]
+### List all Posts [GET]
++ Parameters
+    + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only posts created at or after this time are returned.
++ Response 200 (application/json)
+
+        [
+            { 
+                "id": "356a192b7913b04c54574d18c28d46e6395428ab",
+                "posted_on": "2014-04-14T02:15:15Z",
+                "message": "example message",
+                "author": "Kapitan"
+            },
+            { 
+                "id": "da4b9237bacccdf19c0760cab7aec4a8359010b0",
+                "posted_on": "2014-01-14T02:16:15Z",
+                "message": "example message 2",
+                "author": "Kapitan"
+            }
+        ]
+
+### Create a Note [POST]
++ Request (application/json)
+
+        { 
+            "message": "Example message",
+            "author": "Kapitan"
+        }
+
++ Response 201 (application/json)
+
+        { 
+            "id": "356a192b7913b04c54574d18c28d46e6395428ab",
+            "posted_on": "2014-04-14T02:15:15Z",
+            "message": "example message",
+            "author": "Kapitan"
+        }
+
+## Post [/posts/{id}]
+A single Post object with all its details
+
++ Parameters
+    + id (required, string, `356a192b7913b04c54574d18c28d46e6395428ab`) ... String `id` of the Post
+
+### Retrieve a Post [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            { 
+                "id": "356a192b7913b04c54574d18c28d46e6395428ab",
+                "posted_on": "2014-04-14T02:15:15Z",
+                "message": "example message",
+                "author": "Kapitan"
+            }
+
+### Remove a Post [DELETE]
++ Response 204
